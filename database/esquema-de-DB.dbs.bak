@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="Base de Datos de Heroes" database="LogicalDesign" id="LogicalDesign-d39" >
+	<schema name="INSTANCE" catalogname="Base de Datos de Heroes" >
+		<table name="armas" prior="Entity" >
+			<column name="id" type="INT" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="nombre" type="CHAR" length="255" jt="1" />
+			<column name="descripcion" type="TEXT" jt="-1" />
+			<column name="id_poseedor" type="INT" jt="4" mandatory="y" />
+			<index name="pk_armas" unique="PRIMARY_KEY" >
+				<column name="id" />
+				<column name="id_poseedor" />
+			</index>
+			<fk name="fk_armas_heroes" to_schema="Base de Datos de Heroes.INSTANCE" to_table="heroes" type="Identifying" mandatory="y" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="id_poseedor" pk="id" />
+			</fk>
+		</table>
+		<table name="equipos" prior="Entity" >
+			<column name="id" type="INT" jt="4" mandatory="y" />
+			<column name="nombre" type="CHAR" length="255" jt="1" />
+			<column name="fecha_creacion" type="DATE" jt="91" />
+			<column name="id_locacion" type="INT" jt="4" mandatory="y" />
+			<column name="objetivo" type="TEXT" jt="-1" mandatory="y" />
+			<index name="pk_equipos" unique="PRIMARY_KEY" >
+				<column name="id" />
+				<column name="id_locacion" />
+			</index>
+			<index name="unq_id" unique="UNIQUE_INDEX" >
+				<column name="id" />
+			</index>
+			<fk name="fk_equipos_locacion" to_schema="Base de Datos de Heroes.INSTANCE" to_table="locacion" type="Identifying" mandatory="y" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="id_locacion" pk="id" />
+			</fk>
+		</table>
+		<table name="heroe_pelicula" prior="Entity" >
+			<column name="id_pelicula" type="INT" jt="4" mandatory="y" />
+			<column name="id_heroe" type="INT" jt="4" mandatory="y" />
+			<column name="descripcion_participacion" type="TEXT" jt="-1" />
+			<index name="pk_heroe_pelicula" unique="PRIMARY_KEY" >
+				<column name="id_pelicula" />
+				<column name="id_heroe" />
+			</index>
+			<fk name="fk_heroe_pelicula_heroes" to_schema="Base de Datos de Heroes.INSTANCE" to_table="heroes" type="Identifying" mandatory="y" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="id_heroe" pk="id" />
+			</fk>
+			<fk name="fk_heroe_pelicula_peliculas-series" to_schema="Base de Datos de Heroes.INSTANCE" to_table="peliculas-series" type="Identifying" mandatory="y" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="id_pelicula" pk="id" />
+			</fk>
+		</table>
+		<table name="heroes" prior="heroe" >
+			<column name="id" type="INT" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="nombre" type="CHAR" length="255" jt="1" mandatory="y" />
+			<column name="identidad_secreta" type="CHAR" length="255" jt="1" />
+			<column name="poderes" type="TEXT" jt="-1" />
+			<column name="primera_aparicion" type="DATE" jt="91" />
+			<column name="universo" type="CHAR" length="255" jt="1" mandatory="y" />
+			<column name="biografia" type="TEXT" jt="-1" />
+			<column name="alineacion" type="ENUM" jt="12" >
+				<enumeration><![CDATA["Villano", "Heroe", "Antiheroe"]]></enumeration>
+			</column>
+			<column name="url_imagen" type="VARCHAR" length="1023" jt="12" mandatory="y" />
+			<column name="equipo" type="INT" jt="4" mandatory="y" />
+			<index name="pk_heroes" unique="PRIMARY_KEY" >
+				<column name="id" />
+				<column name="equipo" />
+			</index>
+			<index name="unq_id" unique="UNIQUE_INDEX" >
+				<column name="id" />
+			</index>
+			<fk name="fk_heroes_equipos" to_schema="Base de Datos de Heroes.INSTANCE" to_table="equipos" type="Identifying" mandatory="y" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="equipo" pk="id" />
+			</fk>
+		</table>
+		<table name="locacion" prior="Entity" >
+			<column name="id" type="INT" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="nombre" type="CHAR" length="255" jt="1" />
+			<column name="descripcion" type="TEXT" jt="-1" />
+			<column name="tipo" type="ENUM" jt="12" >
+				<enumeration><![CDATA["Dimension", "Planeta", "Ciudad"]]></enumeration>
+			</column>
+			<index name="pk_locacion" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="peliculas-series" prior="peliculas-seriess" >
+			<column name="id" type="INT" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="nombre" type="CHAR" length="255" jt="1" mandatory="y" />
+			<column name="fecha_estreno" type="DATE" jt="91" mandatory="y" />
+			<column name="director-creador" type="CHAR" length="255" jt="1" />
+			<column name="sinopsis" type="TEXT" jt="-1" />
+			<column name="duracion" type="INT" jt="4" />
+			<index name="pk_peliculas-series" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+	</schema>
+	<layout name="Default Layout" id="Layout-156c" show_relation="columns" >
+		<entity schema="Base de Datos de Heroes.INSTANCE" name="armas" color="C1D8EE" x="51" y="102" />
+		<entity schema="Base de Datos de Heroes.INSTANCE" name="equipos" color="C1D8EE" x="850" y="289" />
+		<entity schema="Base de Datos de Heroes.INSTANCE" name="heroe_pelicula" color="C1D8EE" x="663" y="85" />
+		<entity schema="Base de Datos de Heroes.INSTANCE" name="heroes" color="C1D8EE" x="357" y="85" />
+		<entity schema="Base de Datos de Heroes.INSTANCE" name="locacion" color="C1D8EE" x="1071" y="289" />
+		<entity schema="Base de Datos de Heroes.INSTANCE" name="peliculas-series" color="C1D8EE" x="986" y="51" />
+	</layout>
+</project>

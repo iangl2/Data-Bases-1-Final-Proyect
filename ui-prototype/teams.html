@@ -1,0 +1,317 @@
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Marvel Teams</title>
+      <style>
+          body {
+              font-family: Arial, sans-serif;
+              margin: 0;
+              padding: 0;
+              background-color: #f0f0f0;
+          }
+          nav {
+              margin: 0;
+              width: 100vw;
+              box-sizing: border-box;
+          }
+          nav {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              background-color: #ff0000;
+              padding: 1rem;
+              position: fixed;
+              width: 100%;
+              top: 0;
+              z-index: 1000;
+              transition: opacity 0.3s ease;
+          }
+          .site-title {
+              width: 150px;
+              color: white;
+              font-size: 1.8em;
+              font-weight: bold;
+              margin-left: 10px;
+          }
+          nav ul {
+              flex: 1;
+              list-style-type: none;
+              padding: 0;
+              margin: 0;
+              display: flex;
+              justify-content: center;
+              gap: 2.5rem;
+              margin-right: 150px;
+          }
+          nav ul li a {
+              color: white;
+              text-decoration: none;
+              font-weight: bold;
+              font-size: 1.1em;
+              transition: color 0.3s ease;
+          }
+          nav ul li a:hover {
+              color: #000000;
+          }
+          .teams-container {
+              margin-top: 0px;
+              padding: 20px;
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+              gap: 20px;
+          }
+          .team-card {
+              background: white;
+              border-radius: 10px;
+              padding: 20px;
+              box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+              transition: transform 0.3s ease;
+          }
+          .team-card:hover {
+              transform: translateY(-5px);
+          }
+          .team-image {
+              width: 100%;
+              height: 200px;
+              object-fit: cover;
+              border-radius: 8px;
+              margin-bottom: 15px;
+          }
+          .team-name {
+              color: #e62429;
+              font-size: 24px;
+              margin-bottom: 10px;
+          }
+          .team-description {
+              color: #333;
+              line-height: 1.6;
+          }
+          .team-members {
+              margin-top: 15px;
+          }
+          .team-members h4 {
+              color: #e62429;
+              margin-bottom: 8px;
+          }
+          .team-members ul {
+              list-style-type: none;
+              padding: 0;
+          }
+          .team-members li {
+              padding: 5px 0;
+              color: #555;
+          }
+          .search-sidebar {
+              width: 100%;
+              padding: 20px;
+              background-color: #ffffff;
+              color: rgb(0, 0, 0);
+              position: relative;
+              text-align: center;
+          }
+          
+          .search-box {
+              max-width: 500px;
+              margin: 0 auto;
+              position: relative;
+          }
+          .search-input {
+              width: calc(100% - 55px);
+              padding: 12px 40px 12px 12px;
+              border: none;
+              border-radius: 25px;
+              background-color: #333;
+              color: white;
+              font-size: 16px;
+              transition: all 0.3s ease;
+              box-shadow: 0 2px 5px rgba(255, 255, 255, 0.2);
+          }
+          .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ffffff;
+            cursor: pointer;
+        }
+          .search-description {
+              color: #000000;
+              max-width: 600px;
+              margin: 0 auto 20px;
+              font-size: 1.1em;
+              line-height: 1.4;
+          }
+          .search-results {
+              margin-top: 10px;
+              max-height: 400px;
+              overflow-y: auto;
+              max-width: 500px;
+              margin-left: auto;
+              margin-right: auto;
+          }
+          .search-result-item {
+              padding: 10px 15px;
+              border-radius: 8px;
+              margin-bottom: 8px;
+              background-color: #ff0000;
+              cursor: pointer;
+              transition: all 0.2s ease;
+              color: rgb(0, 0, 0);
+          }
+          .search-result-item:hover {
+              background-color: #ffffff;
+              transform: translateX(5px);
+          }
+          .section-title {
+            color: #000000;
+            text-align: center;
+            font-size: 2.5em;
+            margin: 30px 0;
+            padding-top: 20px;
+        }
+      </style>
+  </head>
+  <body>
+      <nav>
+          <div class="site-title">ESPP</div>
+          <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="characters.html">Characters</a></li>
+              <li><a href="movies&series.html">Movies & Series</a></li>
+              <li><a href="teams.html">Teams</a></li>
+              <li><a href="about.html">About</a></li>
+          </ul>
+      </nav>
+
+      <div class="search-sidebar">
+          <h2>Search Teams</h2>
+          <p class="search-description">Discover Marvel's greatest superhero teams and their members!</p>
+          <div class="search-box">
+              <input type="text" class="search-input" placeholder="Search for a team...">
+              <i class="search-icon">🔍</i>
+          </div>
+          <div id="search-results" class="search-results">
+              <!-- Search results will appear here -->
+          </div>
+      </div>
+
+      <h2 class="section-title">Featured Teams</h2>
+      <div class="teams-container">
+          <div class="team-card">
+              
+              <h3 class="team-name">The Avengers</h3>
+              <p class="team-description">Earth's Mightiest Heroes who fight as one to protect the world from threats too great for any single hero to handle.</p>
+              <div class="team-members">
+                  <h4>Key Members:</h4>
+                  <ul>
+                      <li>Iron Man</li>
+                      <li>Captain America</li>
+                      <li>Thor</li>
+                      <li>Hulk</li>
+                      <li>Black Widow</li>
+                      <li>Hawkeye</li>
+                  </ul>
+              </div>
+          </div>
+
+          <div class="team-card">
+              
+              <h3 class="team-name">X-Men</h3>
+              <p class="team-description">A team of mutant superheroes who fight for peaceful coexistence between mutants and humans.</p>
+              <div class="team-members">
+                  <h4>Key Members:</h4>
+                  <ul>
+                      <li>Professor X</li>
+                      <li>Wolverine</li>
+                      <li>Jean Grey</li>
+                      <li>Cyclops</li>
+                      <li>Storm</li>
+                      <li>Beast</li>
+                  </ul>
+              </div>
+          </div>
+
+          <div class="team-card">
+              
+              <h3 class="team-name">Guardians of the Galaxy</h3>
+              <p class="team-description">A band of intergalactic misfits who protect the galaxy from cosmic threats.</p>
+              <div class="team-members">
+                  <h4>Key Members:</h4>
+                  <ul>
+                      <li>Star-Lord</li>
+                      <li>Gamora</li>
+                      <li>Drax</li>
+                      <li>Rocket</li>
+                      <li>Groot</li>
+                      <li>Mantis</li>
+                  </ul>
+              </div>
+          </div>
+
+          <div class="team-card">
+              
+              <h3 class="team-name">Fantastic Four</h3>
+              <p class="team-description">Marvel's First Family, who gained their powers through cosmic radiation and use them to explore and protect Earth.</p>
+              <div class="team-members">
+                  <h4>Key Members:</h4>
+                  <ul>
+                      <li>Mr. Fantastic</li>
+                      <li>Invisible Woman</li>
+                      <li>Human Torch</li>
+                      <li>The Thing</li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+
+      <script>
+          window.addEventListener('scroll', function() {
+              const nav = document.querySelector('nav');
+              if (window.scrollY > 50) {
+                  nav.style.opacity = '0';
+              } else {
+                  nav.style.opacity = '1';
+              }
+          });
+      </script>
+
+      <script>
+          const searchInput = document.querySelector('.search-input');
+          const searchResults = document.getElementById('search-results');
+
+          const teams = [
+              { name: 'The Avengers', leader: 'Captain America' },
+              { name: 'X-Men', leader: 'Professor X' },
+              { name: 'Guardians of the Galaxy', leader: 'Star-Lord' },
+              { name: 'Fantastic Four', leader: 'Mr. Fantastic' }
+          ];
+
+          searchInput.addEventListener('input', function() {
+              const searchTerm = this.value.toLowerCase();
+            
+              if (searchTerm.length === 0) {
+                  searchResults.innerHTML = '';
+                  return;
+              }
+
+              const filteredTeams = teams
+                  .filter(team => 
+                      team.name.toLowerCase().includes(searchTerm)
+                  )
+                  .sort((a, b) => a.name.localeCompare(b.name));
+
+              searchResults.innerHTML = filteredTeams
+                  .map(team => `
+                      <div class="search-result-item">
+                          <strong>${team.name}</strong>
+                          <br>
+                          <small>Leader: ${team.leader}</small>
+                      </div>
+                  `)
+                  .join('');
+          });
+      </script>
+  </body>
+  </html>
